@@ -25,7 +25,7 @@
                                 <span v-else-if="column === 'created'">
                                     {{ date(charge[column]) }}
                                 </span>
-                                <span v-else-if="column === 'name'">
+                                <span v-else-if="column === 'customer'">
                                     <a :href="`/admin/nova-stripe/customers/${charge.customer}`">{{ charge.billing_details.name }}</a>
                                 </span>
                                 <span v-else-if="column === 'receipt'">

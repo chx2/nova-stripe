@@ -1,8 +1,6 @@
 <template>
     <div>
-        <heading class="mb-6">Stripe Dashboard</heading>
-
-        <BalanceCard />
+        <heading class="mb-6">Transactions</heading>
 
         <card>
             <ColumnSelect
@@ -17,15 +15,14 @@
 </template>
 
 <script>
-import BalanceCard from '../components/BalanceCard.vue';
 import ChargesTable from '../components/ChargesTable.vue';
 import ColumnSelect from "../components/ColumnSelect";
 
 export default {
-    components: { BalanceCard, ChargesTable, ColumnSelect },
+    components: { ChargesTable, ColumnSelect },
     data() {
         return {
-            selectedColumns: ['name', 'amount', 'created', 'receipt'],
+            selectedColumns: ['customer', 'amount', 'created', 'receipt'],
             singleCharge: {},
         }
     },
