@@ -16,9 +16,6 @@
                             </span>
                         </th>
                         <th class="text-left">
-                            <span class="inline-flex items-center"> Name </span>
-                        </th>
-                        <th class="text-left">
                             <span class="inline-flex items-center">
                                 Email
                             </span>
