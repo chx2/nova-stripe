@@ -35,10 +35,10 @@
                 <tbody v-for="customer in customers">
                     <tr>
                         <td>
-                            <a :href="`/${customer.id}`">{{ customer.name }}</a>
+                            <a :href="`/admin/nova-stripe/customers/${customer.id}`">{{ customer.name }}</a>
                         </td>
                         <td>{{ customer.email }}</td>
-                        <td>parseAddress(customer.address)</td>
+                        <td>{{ parseAddress(customer.address) }}</td>
                         <td>
                             <span>
                                 <router-link

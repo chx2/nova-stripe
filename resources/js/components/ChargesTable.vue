@@ -24,7 +24,7 @@
                             <td v-for="column in columns">
                                 <span v-if="moneyColumns.find(moneyColumn => moneyColumn === column)">{{ charge.currency | money(charge[column]) }}</span>
                                 <span v-else-if="column === 'name'">
-                                    <a :href="`/customers/${charge.customer}`">{{ charge.billing_details.name }}</a>
+                                    <a :href="`/admin/nova-stripe/customers/${charge.customer}`">{{ charge.billing_details.name }}</a>
                                 </span>
                                 <span v-else>{{ charge[column] }}</span>
                             </td>
