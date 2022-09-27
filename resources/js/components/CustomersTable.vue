@@ -12,7 +12,7 @@
                     <tr>
                         <th class="text-left">
                             <span class="inline-flex items-center">
-                                Customer ID
+                                Name
                             </span>
                         </th>
                         <th class="text-left">
@@ -25,7 +25,7 @@
                         </th>
                         <th class="text-left">
                             <span class="inline-flex items-center">
-                                Balance
+                                Address
                             </span>
                         </th>
                         <th>&nbsp;</th>
@@ -34,15 +34,11 @@
 
                 <tbody v-for="customer in customers">
                     <tr>
-                        <td>{{ customer.id }}</td>
-                        <td>{{ customer.name }}</td>
-                        <td>{{ customer.email }}</td>
                         <td>
-                            <span v-if="customer.currency">
-                                {{ customer.currency | money(customer.balance) }}
-                            </span>
-                            <span v-else>-</span>
+                            <a :href="`/${customer.id}`">{{ customer.name }}</a>
                         </td>
+                        <td>{{ customer.email }}</td>
+                        <td>parseAddress(customer.address)</td>
                         <td>
                             <span>
                                 <router-link
@@ -100,7 +96,9 @@ export default {
 
     methods: {
         moment: moment,
-
+        parseAddress(object) {
+            return `${object.line1}, ${object.city}, ${object.state} ${object.postal_code}`
+        },
         listCustomers(params) {
             Nova.request()
                 .get("/nova-vendor/nova-stripe/stripe/customers", { params })

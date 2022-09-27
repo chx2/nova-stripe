@@ -17,29 +17,16 @@
                                  {{ column.replaceAll('_', ' ') }}
                               </span>
                             </th>
-                            <th>&nbsp;<!-- View --></th>
                         </tr>
                     </thead>
                     <tbody v-for="charge in charges">
                         <tr>
                             <td v-for="column in columns">
                                 <span v-if="moneyColumns.find(moneyColumn => moneyColumn === column)">{{ charge.currency | money(charge[column]) }}</span>
-                                <span v-else-if="dateColumns.find(dateColumn => dateColumn === column)">{{ charge[column] | date }}</span>
-                                <span v-else-if="column === 'status'" class="rounded-lg px-3 py-1 capitalize text-xs font-black" :class="statusClass(charge.status)">{{ charge.refunded ? 'Refunded' : charge.status }}</span>
-                                <span v-else>{{ charge[column] }}</span>
-                            </td>
-                            <td>
-                                <span>
-                                    <router-link
-                                            class="cursor-pointer text-70 hover:text-primary mr-3"
-                                            :to="{ name: 'charge-detail', params: {
-                                                chargeId: charge.id
-                                            }}"
-                                            :title="__('View')"
-                                    >
-                                        <icon type="view" width="22" height="18" view-box="0 0 22 16" />
-                                    </router-link>
+                                <span v-else-if="column === 'name'">
+                                    <a :href="`/customers/${charge.customer}`">{{ charge.billing_details.name }}</a>
                                 </span>
+                                <span v-else>{{ charge[column] }}</span>
                             </td>
                         </tr>
                     </tbody>
