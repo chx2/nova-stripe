@@ -22,10 +22,6 @@
             :field="{ name: 'Created', value: date(customer.created) }"
         ></detail-text-field>
         <detail-text-field
-            v-if="customer.shipping.address.line1 !== ''"
-            :field="{ name: 'Shipping Address', value: `${this.customer.shipping.address.line1} ${this.customer.shipping.address.line2}, ${this.customer.shipping.address.city}, ${this.customer.shipping.address.state} ${this.customer.shipping.address.postal_code}` }"
-        ></detail-text-field>
-        <detail-text-field
             :field="{ name: 'Currency', value: customer.currency }"
         ></detail-text-field>
         <detail-text-field
@@ -82,12 +78,6 @@ export default {
             initialLoading: true,
             money: moneyFormat,
         };
-    },
-    computed: {
-        formattedShipping() {
-            return `${this.customer.shipping.address.line1} ${this.customer.shipping.address.line2} <br/>
-                    ${this.customer.shipping.address.city}, ${this.customer.shipping.address.state} ${this.customer.shipping.address.postal_code}`;
-        }
     },
     methods: {
         date(date) {
