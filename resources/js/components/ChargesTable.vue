@@ -23,14 +23,9 @@
                         <tr>
                             <td v-for="column in columns">
                                 <span v-if="moneyColumns.find(moneyColumn => moneyColumn === column)">{{ charge.currency | money(charge[column]) }}</span>
-                                <span
-                                    v-else-if="
-                                        dateColumns.find(
-                                            (dateColumn) => dateColumn === column
-                                        )
-                                    "
+                                <span v-else-if="column === 'name'">
                                 >
-                                    {{ $filters.date(charge[column]) }}
+                                    {{ date(charge[column]) }}
                                 </span>
                                 <span v-else-if="column === 'name'">
                                     <a :href="`/admin/nova-stripe/customers/${charge.customer}`">{{ charge.billing_details.name }}</a>
@@ -83,6 +78,9 @@ export default {
     },
     methods: {
         moment: moment,
+        date(date) {
+            return moment.unix(date).format("YYYY/MM/DD h:mm:ss a");
+        },
         listCharges(params) {
             Nova.request()
                 .get("/nova-vendor/nova-stripe/stripe/charges", { params })
