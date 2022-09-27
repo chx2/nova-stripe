@@ -25,7 +25,7 @@ export default {
     components: { BalanceCard, ChargesTable, ColumnSelect },
     data() {
         return {
-            selectedColumns: ['name', 'amount', 'created'],
+            selectedColumns: ['name', 'amount', 'created', 'receipt'],
             singleCharge: {},
         }
     },

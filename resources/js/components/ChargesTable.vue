@@ -11,7 +11,6 @@
                 >
                     <thead>
                         <tr>
-                            <!-- Id, Amount, Created date, Status-->
                             <th v-if="columns" v-for="column in columns" class="text-left">
                               <span class="inline-flex items-center capitalize">
                                  {{ column.replaceAll('_', ' ') }}
@@ -24,11 +23,20 @@
                             <td v-for="column in columns">
                                 <span v-if="moneyColumns.find(moneyColumn => moneyColumn === column)">{{ charge.currency | money(charge[column]) }}</span>
                                 <span v-else-if="column === 'created'">
-                                >
                                     {{ date(charge[column]) }}
                                 </span>
                                 <span v-else-if="column === 'name'">
                                     <a :href="`/admin/nova-stripe/customers/${charge.customer}`">{{ charge.billing_details.name }}</a>
+                                </span>
+                                <span v-else-if="column === 'receipt'">
+                                    <a :href="charge.receipt_url" target="_blank">
+                                        <icon
+                                            type="view"
+                                            width="22"
+                                            height="18"
+                                            view-box="0 0 22 16"
+                                        />
+                                    </a>
                                 </span>
                                 <span v-else>{{ charge[column] }}</span>
                             </td>
