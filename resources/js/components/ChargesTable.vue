@@ -23,7 +23,7 @@
                         <tr>
                             <td v-for="column in columns">
                                 <span v-if="moneyColumns.find(moneyColumn => moneyColumn === column)">{{ charge.currency | money(charge[column]) }}</span>
-                                <span v-else-if="column === 'name'">
+                                <span v-else-if="column === 'created'">
                                 >
                                     {{ date(charge[column]) }}
                                 </span>
