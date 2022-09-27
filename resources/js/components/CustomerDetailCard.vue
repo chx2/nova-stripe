@@ -7,7 +7,7 @@
             :field="{ name: 'Name', value: customer.name }"
         ></detail-text-field>
         <detail-text-field
-            :field="{ name: 'Address', value: customer.address }"
+            :field="{ name: 'Address', value: parseAddress(customer.address) }"
         ></detail-text-field>
         <detail-text-field
             :field="{ name: 'Email', value: customer.email }"
@@ -16,25 +16,7 @@
             :field="{ name: 'Phone', value: customer.phone }"
         ></detail-text-field>
         <detail-text-field
-            :field="{ name: 'Balance', value: money(customer.currency, customer.balance) }"
-        ></detail-text-field>
-        <detail-text-field
             :field="{ name: 'Created', value: date(customer.created) }"
-        ></detail-text-field>
-        <detail-text-field
-            :field="{ name: 'Currency', value: customer.currency }"
-        ></detail-text-field>
-        <detail-text-field
-            :field="{ name: 'Default Source', value: customer.default_source }"
-        ></detail-text-field>
-        <detail-boolean-field
-            :field="{ name: 'Delinquent', value: !customer.delinquent }"
-        ></detail-boolean-field>
-        <detail-text-field
-            :field="{ name: 'Description', value: customer.description }"
-        ></detail-text-field>
-        <detail-text-field
-            :field="{ name: 'Discount', value: customer.discount }"
         ></detail-text-field>
         <detail-text-field
             :field="{ name: 'Invoice Prefix', value: customer.invoice_prefix }"
@@ -42,44 +24,22 @@
         <detail-boolean-field
             :field="{ name: 'Livemode', value: customer.livemode }"
         ></detail-boolean-field>
-        <detail-text-field
-            :field="{ name: 'Metadata', value: customer.metadata }"
-        ></detail-text-field>
-        <detail-text-field
-            :field="{
-                name: 'Next Invoice Sequence',
-                value: customer.next_invoice_sequence,
-            }"
-        ></detail-text-field>
-        <detail-text-field
-            :field="{ name: 'Object', value: customer.object }"
-        ></detail-text-field>
-
-        <detail-text-field
-            :field="{
-                name: 'Preferred Locales',
-                value: customer.preferred_locales,
-            }"
-        ></detail-text-field>
-        <detail-text-field
-            :field="{ name: 'Tax Exempt', value: customer.tax_exempt }"
-        ></detail-text-field>
     </loading-card>
 </template>
 
 <script>
-import moneyFormat from "../utils/moneyFormat";
-
 export default {
     props: ["customerId"],
     data() {
         return {
             customer: {},
             initialLoading: true,
-            money: moneyFormat,
         };
     },
     methods: {
+        parseAddress(object) {
+            return `${object.line1}, ${object.city}, ${object.state} ${object.postal_code}`
+        },
         date(date) {
             return moment.unix(date).format("YYYY/MM/DD h:mm:ss a");
         },
