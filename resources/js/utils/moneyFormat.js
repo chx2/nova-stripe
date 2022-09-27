@@ -1,7 +1,7 @@
 import currency from 'currency.js'
 
 export default (currency_code, amount) => {
-    currency_code = currency_code.toUpperCase()
+    currency_code = currency_code ? currency_code.toUpperCase() : 'USD'
     let decimal_digits = currencies[currency_code] ? currencies[currency_code].decimal_digits : 2
     let currency_divisor = '1'.padEnd(decimal_digits + 1, '0')
     let currency_options = {
